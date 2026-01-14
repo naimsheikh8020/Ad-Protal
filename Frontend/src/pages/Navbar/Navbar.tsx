@@ -18,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="w-full border-b border-gray-200 bg-white sticky top-0 z-50">
+    <header className="w-full py-4 border-b border-gray-200 bg-white sticky top-0 z-50">
       <div className="container mx-auto px-6">
         <div className="flex h-16 items-center justify-between">
       
@@ -29,7 +29,6 @@ const Navbar = () => {
               className="h-14 w-auto"
             />
           </Link>
-
          
           <nav className="hidden md:flex items-center gap-2">
             <NavLink to="/" className={navLinkClass}>

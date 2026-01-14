@@ -1,20 +1,23 @@
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
+import { useEffect } from "react";
 import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 
-
-
 const Root = () => {
-    return (
-        <div>
+  const location = useLocation();
 
-            <Navbar />
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
 
-            <Outlet />
-            <Footer />
-            
-        </div>
-    );
+  return (
+    <div>
+      <Navbar />
+
+      <Outlet />
+      <Footer />
+    </div>
+  );
 };
 
 export default Root;

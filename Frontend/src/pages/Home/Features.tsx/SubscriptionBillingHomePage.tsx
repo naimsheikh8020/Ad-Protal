@@ -1,13 +1,8 @@
 // SubscriptionBilling.tsx
 import React, { useState } from "react";
-import { Check, X,  } from "lucide-react";
+import { Check, X } from "lucide-react";
 
-import type {
-  Plan,
-
-  CardForm,
-  PlanKey,
-} from "@/types/subscription";
+import type { Plan, CardForm, PlanKey } from "@/types/subscription";
 
 /* =========================
    FULL PLAN DATA (SAME AS UI)
@@ -73,9 +68,6 @@ const plans: Plan[] = [
   },
 ];
 
-
-
-
 const SubscriptionBillingHomePage: React.FC = () => {
   const [activePlan, setActivePlan] = useState<PlanKey>("growth");
   const [openModal, setOpenModal] = useState(false);
@@ -89,14 +81,15 @@ const SubscriptionBillingHomePage: React.FC = () => {
 
   return (
     <div className="space-y-6 mt-10 container mx-auto ">
-      
       <div>
-
         <div className=" mb-10">
-            <p className="flex items-center justify-center lg:text-2xl text-2xl md:text-4xl font-extrabold text-slate-900">Simple, <span className="text-[#2D6FF8]">Transparent</span> Pricing</p>
-            <p className="flex items-center justify-center text-gray-500 mt-2 text-xl">Start free, upgrade as you grow.</p>
+          <p className="flex items-center justify-center lg:text-2xl text-2xl md:text-4xl font-extrabold text-slate-900">
+            Simple, <span className="mx-2 text-[#2D6FF8]">Transparent</span> Pricing
+          </p>
+          <p className="flex items-center justify-center text-gray-500 mt-2 text-xl">
+            Start free, upgrade as you grow.
+          </p>
         </div>
-     
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-2 lg:p-2">
           {plans.map((plan) => {
@@ -166,8 +159,6 @@ const SubscriptionBillingHomePage: React.FC = () => {
           })}
         </div>
       </div>
-
-
 
       {/* =========================
          ADD CARD MODAL
