@@ -15,15 +15,12 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-    
+    "ignoreDeprecations": "6.0",
 
-     "baseUrl": ".",
+    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
-    
 
     /* Linting */
     "strict": true,
