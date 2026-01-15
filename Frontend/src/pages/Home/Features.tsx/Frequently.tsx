@@ -29,50 +29,56 @@ const faqs = [
 ];
 
 const Frequently = () => {
-  const [activeIndex, setActiveIndex] = useState(1); // 👈 default open
-
-  const toggleFAQ = (index: any) => {
-    setActiveIndex(index === activeIndex ? null : index);
-  };
+  const [activeIndex, setActiveIndex] = useState<number | null>(1);
 
   return (
-    <section className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-white py-24">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* LEFT TITLE */}
-          <div>
-            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-slate-900">
+    <section className="w-full bg-gradient-to-br from-slate-50 via-blue-50 to-white py-28">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
+          {/* LEFT – PERFECTLY CENTERED */}
+          <div className="flex flex-col items-center justify-center text-center">
+            <h2 className="text-4xl md:text-4xl font-extrabold leading-tight text-slate-900">
               Frequently Asked
-              <br />
-              <span className="text-blue-600">Questions</span>
+              <span className="mx-3 text-blue-600">Questions</span>
             </h2>
+
+            <p className="mt-4 max-w-md text-slate-600">
+              Everything you need to know about AdPortal before getting started.
+            </p>
           </div>
 
-          {/* RIGHT FAQ */}
+          {/* RIGHT – FAQ ACCORDION */}
           <div className="space-y-4">
             {faqs.map((faq, index) => {
-              const isActive = activeIndex === index;
+              const isActive = index === activeIndex;
 
               return (
-                
                 <div
                   key={index}
-                  className={`rounded-xl p-5 cursor-pointer transition-all duration-300 border ${
-    isActive
-      ? "bg-gradient-to-b from-[#0A1B4D] to-[#123A8F] text-white border-blue-400/40 shadow-[0_0_0_1px_rgba(59,111,245,0.4)]"
-      : "bg-white border-slate-200 text-slate-900 hover:border-blue-300"
-  }`}
-
-
-
-                  onClick={() => toggleFAQ(index)}
+                  onClick={() =>
+                    setActiveIndex(isActive ? null : index)
+                  }
+                  className={`group cursor-pointer rounded-2xl border transition-all duration-300 ${
+                    isActive
+                      ? "border-blue-400/40 bg-gradient-to-b from-[#0A1B4D] to-[#123A8F] shadow-lg"
+                      : "border-slate-200 bg-white hover:border-blue-300 hover:shadow-sm"
+                  }`}
                 >
                   {/* Question */}
-                  <div className="flex items-center justify-between font-semibold text-base">
-                    {faq.question}
+                  <div className="flex items-center justify-between px-6 py-5">
+                    <h3
+                      className={`font-semibold text-base transition-colors ${
+                        isActive ? "text-white" : "text-slate-900"
+                      }`}
+                    >
+                      {faq.question}
+                    </h3>
+
                     <span
-                      className={`transition-transform duration-300 ${
-                        isActive ? "rotate-180" : ""
+                      className={`ml-4 flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300 ${
+                        isActive
+                          ? "rotate-180 border-white/30 text-white"
+                          : "border-slate-300 text-slate-500 group-hover:text-blue-600"
                       }`}
                     >
                       ⌄
@@ -80,11 +86,17 @@ const Frequently = () => {
                   </div>
 
                   {/* Answer */}
-                  {isActive && (
-                    <p className="mt-3 text-sm text-blue-100">
+                  <div
+                    className={`overflow-hidden px-6 transition-all duration-300 ease-out ${
+                      isActive
+                        ? "max-h-40 pb-5 opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <p className="text-sm leading-relaxed text-blue-100">
                       {faq.answer}
                     </p>
-                  )}
+                  </div>
                 </div>
               );
             })}
